@@ -1,0 +1,12 @@
+Ran 9 tests for test/MedicineRegistry.t.sol:MedicineRegistryTest
+[PASS] test_Attack_CannotHijackExistingSerial() (gas: 369912)
+[PASS] test_Attack_CannotSellSamePackTwice() (gas: 538318)
+[PASS] test_Attack_CannotShipToUnregisteredAddress() (gas: 280859)
+[PASS] test_Attack_ClonedQrCodeIsFlaggedAfterSale() (gas: 537657)
+[PASS] test_Attack_FakeCodeIsNotFound() (gas: 458832)
+[PASS] test_Attack_RecalledBatchCannotBeSold() (gas: 552512)
+[PASS] test_Attack_RevokedDistributorCannotShip() (gas: 426690)
+[PASS] test_Attack_RoguePharmacyCannotSellOthersStock() (gas: 483588)
+[PASS] test_Attack_UnregisteredFactoryCannotRegisterBatch() (gas: 39536)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 3.15ms (4.68ms CPU time)
+Ran 1 test suite in 14.08ms (3.15ms CPU time): 9 tests passed, 0 failed, 0 skipped (9 total tests)

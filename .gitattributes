@@ -1,0 +1,2 @@
+# LF everywhere, so scripts and forge fmt behave the same in Git Bash, WSL and CI
+* text=auto eol=lf
