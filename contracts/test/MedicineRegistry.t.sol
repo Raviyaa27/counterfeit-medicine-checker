@@ -208,6 +208,131 @@ contract MedicineRegistryTest is Test {
         reg.approveBatch(id);
     }
 
+    // ------------------------------------------------------------------ remaining revert branches
+
+    function test_RevertWhen_ApprovingTwice() public {
+        uint256 id = _register();
+        vm.startPrank(nmra);
+        reg.approveBatch(id);
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                MedicineRegistry.InvalidStatus.selector, MedicineRegistry.BatchStatus.Approved
+            )
+        );
+        reg.approveBatch(id);
+        vm.stopPrank();
+    }
+
+    function test_RevertWhen_BatchDoesNotExist() public {
+        vm.prank(nmra);
+        vm.expectRevert(abi.encodeWithSelector(MedicineRegistry.UnknownBatch.selector, 99));
+        reg.approveBatch(99);
+    }
+
+    function test_RecallRules() public {
+        uint256 id = _register();
+
+        vm.prank(pharmacyA);
+        vm.expectRevert(MedicineRegistry.NotAuthorized.selector);
+        reg.recallBatch(id, "not mine");
+
+        vm.prank(maker);
+        reg.recallBatch(id, "Labelling error");
+        assertEq(uint8(_verdict(SERIAL)), uint8(MedicineRegistry.Verdict.Recalled));
+
+        vm.prank(nmra);
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                MedicineRegistry.InvalidStatus.selector, MedicineRegistry.BatchStatus.Recalled
+            )
+        );
+        reg.recallBatch(id, "again");
+    }
+
+    function test_RevertWhen_TransferBeforeApproval() public {
+        uint256 id = _register();
+        vm.prank(maker);
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                MedicineRegistry.InvalidStatus.selector, MedicineRegistry.BatchStatus.Pending
+            )
+        );
+        reg.transferBatch(id, distributor);
+    }
+
+    function test_RevertWhen_TransferByNonHolder() public {
+        uint256 id = _register();
+        vm.prank(nmra);
+        reg.approveBatch(id);
+        vm.prank(distributor);
+        vm.expectRevert(abi.encodeWithSelector(MedicineRegistry.NotHolder.selector, maker));
+        reg.transferBatch(id, pharmacyA);
+    }
+
+    function test_RevertWhen_TransferToSelf() public {
+        uint256 id = _register();
+        vm.prank(nmra);
+        reg.approveBatch(id);
+        vm.prank(maker);
+        reg.transferBatch(id, distributor);
+        vm.prank(distributor);
+        vm.expectRevert(
+            abi.encodeWithSelector(MedicineRegistry.InvalidRecipient.selector, distributor)
+        );
+        reg.transferBatch(id, distributor);
+    }
+
+    function test_RevertWhen_PharmacyTransfersOnward() public {
+        uint256 id = _readyAtPharmacyA();
+        vm.prank(pharmacyA);
+        vm.expectRevert(MedicineRegistry.NotAuthorized.selector);
+        reg.transferBatch(id, pharmacyB);
+    }
+
+    function test_RevertWhen_TransferAfterExpiry() public {
+        uint256 id = _register();
+        vm.prank(nmra);
+        reg.approveBatch(id);
+        uint64 expiry = reg.getBatch(id).expiryDate;
+        vm.warp(expiry);
+        vm.prank(maker);
+        vm.expectRevert(abi.encodeWithSelector(MedicineRegistry.BatchExpired.selector, expiry));
+        reg.transferBatch(id, distributor);
+    }
+
+    function test_RevertWhen_DispenseAfterExpiry() public {
+        uint256 id = _readyAtPharmacyA();
+        uint64 expiry = reg.getBatch(id).expiryDate;
+        vm.warp(expiry);
+        vm.prank(pharmacyA);
+        vm.expectRevert(abi.encodeWithSelector(MedicineRegistry.BatchExpired.selector, expiry));
+        reg.dispense(SERIAL);
+    }
+
+    function test_RevertWhen_DispenseUnknownSerial() public {
+        vm.prank(pharmacyA);
+        vm.expectRevert(MedicineRegistry.UnknownSerial.selector);
+        reg.dispense(SERIAL);
+    }
+
+    function test_RevertWhen_DispenseFromPendingBatch() public {
+        _register();
+        vm.prank(pharmacyA);
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                MedicineRegistry.InvalidStatus.selector, MedicineRegistry.BatchStatus.Pending
+            )
+        );
+        reg.dispense(SERIAL);
+    }
+
+    function test_RevertWhen_RegisteringAnotherRegulator() public {
+        bytes32 role = reg.REGULATOR_ROLE();
+        vm.prank(nmra);
+        vm.expectRevert(abi.encodeWithSelector(MedicineRegistry.InvalidRole.selector, role));
+        reg.registerParticipant(pharmacyB, role, "Fake NMRA");
+    }
+
     // ------------------------------------------------------------------ fuzz tests
 
     function testFuzz_OnlyManufacturersCanRegister(address caller) public {
