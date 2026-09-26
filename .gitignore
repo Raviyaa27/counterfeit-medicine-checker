@@ -1,0 +1,2 @@
+# Pack serials are secrets: never commit the CSV export
+*.csv
