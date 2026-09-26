@@ -4,7 +4,9 @@ import { keccak256 } from "viem";
 import { useReadContract } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { chain, registryAddress } from "@/lib/config";
+import { fmtDate, fmtDateTime } from "@/lib/format";
 import { registryAbi } from "@/lib/registryAbi";
+import { CustodyTrail } from "./CustodyTrail";
 import { OrgName } from "./OrgName";
 
 // Order must match the Verdict enum in MedicineRegistry.sol
@@ -16,41 +18,6 @@ const VERDICTS = [
   { label: "RECALLED", hint: "Do not use this medicine.", color: "bg-red-600" },
   { label: "EXPIRED", hint: "This medicine is past its expiry date.", color: "bg-red-600" },
 ] as const;
-
-const fmtDate = (unixSeconds: number | bigint) =>
-  new Date(Number(unixSeconds) * 1000).toLocaleDateString(undefined, { dateStyle: "medium" });
-const fmtDateTime = (unixSeconds: number | bigint) =>
-  new Date(Number(unixSeconds) * 1000).toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-
-function CustodyTrail({ batchId }: { batchId: bigint }) {
-  const { data: trail } = useReadContract({
-    address: registryAddress,
-    abi: registryAbi,
-    functionName: "getTrail",
-    args: [batchId],
-    chainId: chain.id,
-  });
-  if (!trail || trail.length === 0) return null;
-
-  return (
-    <section>
-      <h2 className="mb-2 text-lg font-semibold">Custody trail</h2>
-      <ol className="space-y-2 border-l-2 border-zinc-300 pl-4">
-        {trail.map((h, i) => (
-          <li key={i} className="text-base">
-            <span className="font-medium">
-              <OrgName address={h.from} /> &rarr; <OrgName address={h.to} />
-            </span>
-            <span className="block text-sm text-zinc-500">{fmtDateTime(h.at)}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
 
 function ChainNote() {
   const explorer = chain.blockExplorers?.default.url;

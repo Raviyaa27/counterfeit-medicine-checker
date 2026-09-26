@@ -69,3 +69,18 @@ body {
     width: 100%;
   }
 }
+
+.btn-danger {
+  border-radius: 0.5rem;
+  background: #dc2626;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  color: white;
+}
+.btn-danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+.btn-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
