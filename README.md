@@ -1,5 +1,7 @@
 # Counterfeit Medicine Checker
 
+[![CI](https://github.com/Raviyaa27/counterfeit-medicine-checker/actions/workflows/ci.yml/badge.svg)](https://github.com/Raviyaa27/counterfeit-medicine-checker/actions/workflows/ci.yml)
+
 EC8204 Blockchain and Cyber Security group project, University of Ruhuna.
 
 Patients scan the QR code on a medicine pack to check on the Ethereum blockchain whether it is
@@ -16,5 +18,8 @@ and tasks.
 
 ## Status
 
-Setup in progress. The contract address, Etherscan link and live site will be added here after
+The smart contract is built and tested: 32 tests, 100% coverage and no medium or high Slither
+findings. See the [security report](docs/security-report.md).
+
+The contract address, Etherscan link and live site will be added here after
 deployment.
