@@ -24,3 +24,63 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.btn {
+  border-radius: 0.5rem;
+  background: #2563eb;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  color: white;
+}
+.btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-secondary {
+  border-radius: 0.5rem;
+  border: 1px solid #a1a1aa;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+.input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #a1a1aa;
+  background: transparent;
+  padding: 0.6rem 0.75rem;
+}
+
+/* Print only the QR sheet (id="qr-sheet") */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #qr-sheet,
+  #qr-sheet * {
+    visibility: visible;
+  }
+  #qr-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.btn-danger {
+  border-radius: 0.5rem;
+  background: #dc2626;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  color: white;
+}
+.btn-danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+.btn-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

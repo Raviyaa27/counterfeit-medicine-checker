@@ -40,19 +40,23 @@ the Q&A are shared by all three.
 Phase 0 (All) ─▶ M1: P1 ─ P2 ─ P3 ─▶ H1 ─▶ M2: P4 ─ P5 ─ P6 ─▶ H2 ─▶ M3: P7 ─ P8 ─ P9 ─▶ SUBMIT
 ```
 
-| Phase | Name | Owner |
-|---|---|---|
-| 0 | Tools, accounts and test ETH | All |
-| 1 | Repository setup | M1 |
-| 2 | Smart contract and local chain | M1 |
-| 3 | Testing and security | M1 |
-| 4 | Web app foundation and verify page | M2 |
-| 5 | Manufacturer and pharmacy pages | M2 |
-| 6 | NMRA, supply and landing pages, full local flow | M2 |
-| 7 | Sepolia and Vercel deployment | M3 |
-| 8 | Demo props, video and slides | M3 |
-| 9 | Rehearsal and submission | M3 (all present) |
-| 10 | Stretch goals (optional) | Anyone |
+| Phase | Name | Owner | Status |
+|---|---|---|---|
+| 0 | Tools, accounts and test ETH | All | In progress: each member sets up their own laptop (see the README) |
+| 1 | Repository setup | M1 | Done |
+| 2 | Smart contract and local chain | M1 | Done |
+| 3 | Testing and security | M1 | Done (32 tests, 100% coverage, CI green) |
+| 4 | Web app foundation and verify page | M2 | Done, on branch `m2-frontend` |
+| 5 | Manufacturer and pharmacy pages | M2 | Done, on branch `m2-frontend` |
+| 6 | NMRA, supply and landing pages, full local flow | M2 | Done, on branch `m2-frontend` (Pull Request to `main` still to open) |
+| 7 | Sepolia and Vercel deployment | M3 | Not started |
+| 8 | Demo props, video and slides | M3 | Not started |
+| 9 | Rehearsal and submission | M3 (all present) | Not started |
+| 10 | Stretch goals (optional) | Anyone | Not started |
+
+Phases 4 to 6 were checked in a headless browser with a fake wallet signing as the Anvil
+accounts. A click-through with real MetaMask is still worth doing once, so treat task 4.3 (MetaMask
+on Anvil) as done only when each member has tried it on their own laptop.
 
 ---
 
@@ -137,9 +141,9 @@ up a local demo.
 
 ### Handoff H1: M1 → M2
 
-- [ ] Contract, deploy script, `local-demo.sh` and `frontend/lib/registryAbi.ts` are on `main`
-- [ ] `forge test` passes with 100% coverage, and CI is green
-- [ ] `docs/security-report.md` is merged
+- [x] Contract, deploy script, `local-demo.sh` and `frontend/lib/registryAbi.ts` are on `main`
+- [x] `forge test` passes with 100% coverage, and CI is green
+- [x] `docs/security-report.md` is merged
 - [ ] M1 walks M2 through running Anvil and `local-demo.sh`, and shares the three verify links
 
 ---
@@ -193,8 +197,8 @@ and the whole flow works on the local chain.
 
 ### Handoff H2: M2 → M3
 
-- [ ] All pages are on `main` and `npm run build` passes
-- [ ] The full local flow (6.8) works
+- [ ] All pages are on `main` (they are on `m2-frontend`, waiting for the Pull Request to merge) and `npm run build` passes (done)
+- [x] The full local flow (6.8) works
 - [ ] M2 walks M3 through the flow in the browser, so M3 can repeat it on Sepolia and in the video
 
 ---
@@ -270,16 +274,16 @@ Start these **only after** the definition of done is fully ticked.
 
 ## Definition of done
 
-- [ ] `forge test` passes and `forge fmt --check` passes
-- [ ] Coverage is 100% of lines, branches and functions
-- [ ] Slither shows no medium or high findings, and the accepted low findings are documented in `docs/security-report.md`
+- [x] `forge test` passes and `forge fmt --check` passes
+- [x] Coverage is 100% of lines, branches and functions
+- [x] Slither shows no medium or high findings, and the accepted low findings are documented in `docs/security-report.md`
 - [ ] Contract deployed and verified on Sepolia, with the Etherscan link in the README
 - [ ] Web app live on Vercel, and the verify page works on a phone with no wallet
 - [ ] Full demo flow completed on Sepolia at least twice
 - [ ] Demo video (about 70 seconds) recorded, slides done, rehearsed to 3:00 or less
 - [ ] 3-minute presentation video link added to the Google Sheet
 - [ ] `GP_XX_Counterfeit_Medicine_Checker.ppt` submitted on ELMS
-- [ ] README explains what the project is and how to run it
+- [x] README explains what the project is and how to run it (the Sepolia address and live URL are added after Phase 7)
 
 ## Risks and mitigations
 
