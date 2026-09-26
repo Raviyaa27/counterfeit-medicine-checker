@@ -7,6 +7,9 @@ const MESSAGES: Record<string, string> = {
   InvalidStatus: "This batch is not approved, or has been recalled.",
   BatchExpired: "This batch has expired.",
   InvalidRecipient: "That address isn't a registered distributor or pharmacy.",
+  InvalidExpiry: "The expiry date must be in the future.",
+  InvalidUnitCount: "A batch must have between 1 and 200 packs.",
+  NotAuthorized: "Your organisation is not allowed to do this.",
   DuplicateSerial: "One of these serials is already registered.",
   AccessControlUnauthorizedAccount: "Your wallet doesn't have permission for this action.",
 };
