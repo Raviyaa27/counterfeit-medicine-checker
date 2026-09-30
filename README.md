@@ -28,11 +28,10 @@ The contract address, Etherscan link and live site will be added here after depl
 
 ## How it works
 
-```
-Manufacturer ─▶ NMRA approves ─▶ Distributor ─▶ Pharmacy sells ─▶ Patient scans QR
-   registers       the batch        ships          the pack          on /verify
-   a batch
-```
+![Architecture: users, the Next.js web app, MetaMask and the RPC node, and the MedicineRegistry contract on Ethereum Sepolia](docs/architecture.svg)
+
+A batch moves from the manufacturer, through NMRA approval and the distributor, to the pharmacy,
+which sells each pack. The patient scans the pack's QR code to check it on `/verify`.
 
 Only the `keccak256` **hash** of each pack's secret serial goes on-chain, so nobody can read the
 serial list from the blockchain. A pack can be sold only once, so a photocopied QR code shows
