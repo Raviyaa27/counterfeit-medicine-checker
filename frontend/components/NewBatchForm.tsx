@@ -42,7 +42,8 @@ export function NewBatchForm() {
   } | null>(null);
 
   const packCount = Number(packs);
-  const expirySeconds = expiry ? Math.floor(Date.parse(`${expiry}T23:59:59Z`) / 1000) : 0;
+  // End of the chosen day in the user's own time zone (no "Z"), so the page shows the same date
+  const expirySeconds = expiry ? Math.floor(Date.parse(`${expiry}T23:59:59`) / 1000) : 0;
   const problem = !drugName.trim()
     ? "Enter the medicine name."
     : !batchNumber.trim()
