@@ -1,164 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="912" viewBox="0 0 1200 912" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-  <title>Counterfeit Medicine Checker architecture</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="860" viewBox="0 0 1000 860" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <title>Counterfeit Medicine Checker: container diagram</title>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#5b6b7f"/>
-    </marker>
-    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#0f7c73"/>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
     </marker>
   </defs>
 
-  <!-- Background (explicit, so the diagram stays readable on GitHub's dark theme) -->
-  <rect x="0" y="0" width="1200" height="912" rx="16" fill="#ffffff"/>
+  <!-- Explicit background so it stays readable on GitHub's dark theme -->
+  <rect width="1000" height="860" rx="16" fill="#ffffff"/>
 
-  <!-- Title -->
-  <text x="36" y="44" font-size="24" font-weight="700" fill="#1b3a5c">Counterfeit Medicine Checker: architecture</text>
-  <text x="36" y="70" font-size="14" fill="#5b6b7f">Supply-chain staff write to the contract with MetaMask. Patients only read, for free, with no wallet.</text>
+  <text x="40" y="46" font-size="22" font-weight="700" fill="#1f2937">Counterfeit Medicine Checker: container diagram</text>
+  <text x="40" y="70" font-size="13.5" fill="#6b7280">C4 model, level 2. Supply-chain staff write through MetaMask. Patients only read, for free.</text>
 
-  <!-- ============ Row 1: users ============ -->
-  <g font-size="13" text-anchor="middle">
-    <rect x="36" y="90" width="208" height="78" rx="10" fill="#eef3f9" stroke="#1b3a5c" stroke-width="1.5"/>
-    <text x="140" y="116" font-size="15" font-weight="700" fill="#1b3a5c">NMRA (regulator)</text>
-    <text x="140" y="136" fill="#334155">REGULATOR_ROLE</text>
-    <text x="140" y="155" fill="#5b6b7f">MetaMask wallet</text>
+  <!-- ========== People ========== -->
+  <g text-anchor="middle" fill="#ffffff">
+    <circle cx="260" cy="112" r="22" fill="#08427b"/>
+    <rect x="120" y="132" width="280" height="80" rx="26" fill="#08427b"/>
+    <text x="260" y="160" font-size="16" font-weight="700">Supply-chain staff</text>
+    <text x="260" y="178" font-size="12" fill="#cfe0f3">[Person]</text>
+    <text x="260" y="198" font-size="12.5">NMRA, manufacturer, distributor, pharmacy</text>
 
-    <rect x="266" y="90" width="208" height="78" rx="10" fill="#eef3f9" stroke="#1b3a5c" stroke-width="1.5"/>
-    <text x="370" y="116" font-size="15" font-weight="700" fill="#1b3a5c">Manufacturer</text>
-    <text x="370" y="136" fill="#334155">MANUFACTURER_ROLE</text>
-    <text x="370" y="155" fill="#5b6b7f">MetaMask wallet</text>
-
-    <rect x="496" y="90" width="208" height="78" rx="10" fill="#eef3f9" stroke="#1b3a5c" stroke-width="1.5"/>
-    <text x="600" y="116" font-size="15" font-weight="700" fill="#1b3a5c">Distributor</text>
-    <text x="600" y="136" fill="#334155">DISTRIBUTOR_ROLE</text>
-    <text x="600" y="155" fill="#5b6b7f">MetaMask wallet</text>
-
-    <rect x="726" y="90" width="208" height="78" rx="10" fill="#eef3f9" stroke="#1b3a5c" stroke-width="1.5"/>
-    <text x="830" y="116" font-size="15" font-weight="700" fill="#1b3a5c">Pharmacy</text>
-    <text x="830" y="136" fill="#334155">PHARMACY_ROLE</text>
-    <text x="830" y="155" fill="#5b6b7f">MetaMask wallet</text>
-
-    <rect x="956" y="90" width="208" height="78" rx="10" fill="#e6f4f2" stroke="#0f7c73" stroke-width="1.5"/>
-    <text x="1060" y="116" font-size="15" font-weight="700" fill="#0f7c73">Patient</text>
-    <text x="1060" y="136" fill="#334155">no role, no wallet</text>
-    <text x="1060" y="155" fill="#5b6b7f">phone camera scans the QR</text>
+    <circle cx="740" cy="112" r="22" fill="#08427b"/>
+    <rect x="600" y="132" width="280" height="80" rx="26" fill="#08427b"/>
+    <text x="740" y="160" font-size="16" font-weight="700">Patient</text>
+    <text x="740" y="178" font-size="12" fill="#cfe0f3">[Person]</text>
+    <text x="740" y="198" font-size="12.5">Checks a pack with a phone, no wallet</text>
   </g>
 
-  <!-- Arrows: users to pages -->
-  <g stroke="#5b6b7f" stroke-width="1.6" fill="none" marker-end="url(#arrow)">
-    <line x1="140" y1="168" x2="140" y2="193"/>
-    <line x1="370" y1="168" x2="370" y2="193"/>
-    <line x1="600" y1="168" x2="600" y2="193"/>
-    <line x1="830" y1="168" x2="830" y2="193"/>
-  </g>
-  <line x1="1060" y1="168" x2="1060" y2="193" stroke="#0f7c73" stroke-width="1.6" marker-end="url(#arrow-teal)"/>
+  <!-- ========== System boundary ========== -->
+  <rect x="320" y="244" width="360" height="530" rx="10" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <text x="334" y="764" font-size="13" font-weight="600" fill="#4b5563">Counterfeit Medicine Checker</text>
+  <text x="334" y="764" dx="196" font-size="12" fill="#6b7280">[Software System]</text>
 
-  <!-- ============ Row 2: web app ============ -->
-  <rect x="36" y="196" width="1128" height="196" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="6 4"/>
-  <text x="52" y="220" font-size="14" font-weight="700" fill="#1b3a5c">Web app · Next.js 16 + TypeScript · hosted on Vercel</text>
+  <!-- ========== Containers ========== -->
+  <g text-anchor="middle" fill="#ffffff">
+    <rect x="340" y="272" width="320" height="100" rx="8" fill="#1168bd"/>
+    <text x="500" y="302" font-size="16" font-weight="700">Web app</text>
+    <text x="500" y="322" font-size="12" fill="#d6e6f7">[Container: Next.js 16, TypeScript · Vercel]</text>
+    <text x="500" y="348" font-size="13">A page for each role and the patient verify page</text>
 
-  <g font-size="13" text-anchor="middle">
-    <rect x="52" y="236" width="176" height="70" rx="8" fill="#ffffff" stroke="#1b3a5c"/>
-    <text x="140" y="262" font-size="15" font-weight="700" font-family="Consolas, Menlo, monospace" fill="#1b3a5c">/admin</text>
-    <text x="140" y="284" fill="#475569">register · approve · recall</text>
-
-    <rect x="282" y="236" width="176" height="70" rx="8" fill="#ffffff" stroke="#1b3a5c"/>
-    <text x="370" y="262" font-size="15" font-weight="700" font-family="Consolas, Menlo, monospace" fill="#1b3a5c">/manufacturer</text>
-    <text x="370" y="284" fill="#475569">new batch · QR sheet · CSV</text>
-
-    <rect x="512" y="236" width="176" height="70" rx="8" fill="#ffffff" stroke="#1b3a5c"/>
-    <text x="600" y="262" font-size="15" font-weight="700" font-family="Consolas, Menlo, monospace" fill="#1b3a5c">/supply</text>
-    <text x="600" y="284" fill="#475569">ship batch · custody trail</text>
-
-    <rect x="742" y="236" width="176" height="70" rx="8" fill="#ffffff" stroke="#1b3a5c"/>
-    <text x="830" y="262" font-size="15" font-weight="700" font-family="Consolas, Menlo, monospace" fill="#1b3a5c">/pharmacy</text>
-    <text x="830" y="284" fill="#475569">mark a pack as sold</text>
-
-    <rect x="972" y="236" width="176" height="70" rx="8" fill="#ffffff" stroke="#0f7c73" stroke-width="1.5"/>
-    <text x="1060" y="262" font-size="15" font-weight="700" font-family="Consolas, Menlo, monospace" fill="#0f7c73">/verify?s=…</text>
-    <text x="1060" y="284" fill="#475569">verdict + custody trail</text>
+    <path d="M340,612 L340,716 A160,16 0 0 0 660,716 L660,612" fill="#1168bd"/>
+    <ellipse cx="500" cy="612" rx="160" ry="16" fill="#3a86d4"/>
+    <text x="500" y="656" font-size="16" font-weight="700">MedicineRegistry</text>
+    <text x="500" y="676" font-size="12" fill="#d6e6f7">[Container: Solidity smart contract · Ethereum Sepolia]</text>
+    <text x="500" y="702" font-size="13">Roles, batches, custody trail, hashed serials</text>
   </g>
 
-  <rect x="52" y="322" width="866" height="54" rx="8" fill="#eef3f9"/>
-  <text x="485" y="344" font-size="13" text-anchor="middle" fill="#1b3a5c" font-weight="600">wagmi 3 + viem 2: connect wallet → simulate → write → wait for receipt</text>
-  <text x="485" y="364" font-size="12.5" text-anchor="middle" fill="#475569">friendlyError() turns contract reverts (e.g. AlreadyDispensed) into plain messages · qrcode.react draws the QR codes</text>
+  <!-- ========== External systems ========== -->
+  <g text-anchor="middle" fill="#ffffff">
+    <rect x="40" y="444" width="240" height="96" rx="8" fill="#8a8a8a"/>
+    <text x="160" y="474" font-size="16" font-weight="700">MetaMask</text>
+    <text x="160" y="494" font-size="12" fill="#eeeeee">[External system: browser wallet]</text>
+    <text x="160" y="520" font-size="13">Signs staff transactions</text>
 
-  <rect x="972" y="322" width="176" height="54" rx="8" fill="#e6f4f2"/>
-  <text x="1060" y="344" font-size="13" text-anchor="middle" fill="#0f7c73" font-weight="600">useReadContract</text>
-  <text x="1060" y="364" font-size="12.5" text-anchor="middle" fill="#475569">read-only, no wallet</text>
-
-  <!-- Arrows: web app to access layer -->
-  <g stroke="#5b6b7f" stroke-width="1.6" fill="none" marker-end="url(#arrow)">
-    <line x1="485" y1="376" x2="485" y2="434"/>
-  </g>
-  <text x="497" y="412" font-size="12" fill="#5b6b7f">transactions</text>
-  <line x1="1060" y1="376" x2="1060" y2="434" stroke="#0f7c73" stroke-width="1.6" marker-end="url(#arrow-teal)"/>
-  <text x="1072" y="412" font-size="12" fill="#0f7c73">reads</text>
-  <path d="M918,352 C940,352 944,420 950,460" stroke="#94a3b8" stroke-width="1.4" fill="none" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
-  <text x="866" y="412" font-size="12" fill="#5b6b7f" text-anchor="end">lists + event logs</text>
-
-  <!-- ============ Row 3: access layer ============ -->
-  <rect x="36" y="436" width="898" height="72" rx="10" fill="#fff7e8" stroke="#b7791f" stroke-width="1.5"/>
-  <text x="485" y="465" font-size="15" font-weight="700" text-anchor="middle" fill="#8a5a12">MetaMask</text>
-  <text x="485" y="489" font-size="13" text-anchor="middle" fill="#475569">signs each transaction with the staff member's key · staff pay a small gas fee</text>
-
-  <rect x="956" y="436" width="208" height="72" rx="10" fill="#e6f4f2" stroke="#0f7c73" stroke-width="1.5"/>
-  <text x="1060" y="460" font-size="15" font-weight="700" text-anchor="middle" fill="#0f7c73">RPC node</text>
-  <text x="1060" y="481" font-size="12.5" text-anchor="middle" fill="#475569">Alchemy (Sepolia) · Anvil (local)</text>
-  <text x="1060" y="499" font-size="12" text-anchor="middle" fill="#0f7c73">reads are free</text>
-
-  <!-- Arrows: access layer to chain -->
-  <line x1="485" y1="508" x2="485" y2="541" stroke="#5b6b7f" stroke-width="1.6" marker-end="url(#arrow)"/>
-  <text x="497" y="530" font-size="12" fill="#5b6b7f">signed transactions</text>
-  <line x1="1060" y1="508" x2="1060" y2="541" stroke="#0f7c73" stroke-width="1.6" marker-end="url(#arrow-teal)"/>
-  <text x="1048" y="530" font-size="12" fill="#0f7c73" text-anchor="end">eth_call · eth_getLogs</text>
-
-  <!-- ============ Row 4: blockchain ============ -->
-  <rect x="36" y="544" width="1128" height="216" rx="12" fill="#1b3a5c"/>
-  <text x="52" y="568" font-size="14" font-weight="700" fill="#ffffff">Ethereum · Sepolia testnet</text>
-  <text x="258" y="568" font-size="13" fill="#b9c8da">(local development: Anvil, chain ID 31337)</text>
-
-  <rect x="52" y="582" width="1096" height="162" rx="10" fill="#243f60" stroke="#6f8db0"/>
-  <text x="600" y="606" font-size="15" font-weight="700" text-anchor="middle" fill="#ffffff">MedicineRegistry.sol · Solidity 0.8.30 · OpenZeppelin AccessControl</text>
-
-  <g font-size="12.5" text-anchor="middle">
-    <rect x="68" y="620" width="254" height="84" rx="8" fill="#ffffff"/>
-    <text x="195" y="644" font-size="14" font-weight="700" fill="#1b3a5c">Roles</text>
-    <text x="195" y="665" fill="#334155">NMRA registers manufacturers,</text>
-    <text x="195" y="684" fill="#334155">distributors and pharmacies</text>
-
-    <rect x="338" y="620" width="254" height="84" rx="8" fill="#ffffff"/>
-    <text x="465" y="644" font-size="14" font-weight="700" fill="#1b3a5c">Batches</text>
-    <text x="465" y="665" fill="#334155">Pending → Approved → Recalled</text>
-    <text x="465" y="684" fill="#334155">drug, batch no., expiry, holder</text>
-
-    <rect x="608" y="620" width="254" height="84" rx="8" fill="#ffffff"/>
-    <text x="735" y="644" font-size="14" font-weight="700" fill="#1b3a5c">Custody trail</text>
-    <text x="735" y="665" fill="#334155">every handover: from → to,</text>
-    <text x="735" y="684" fill="#334155">with a timestamp</text>
-
-    <rect x="878" y="620" width="254" height="84" rx="8" fill="#ffffff"/>
-    <text x="1005" y="644" font-size="14" font-weight="700" fill="#1b3a5c">Packs</text>
-    <text x="1005" y="665" fill="#334155">keccak256(serial) → batch</text>
-    <text x="1005" y="684" fill="#334155">sold by whom, and when (once only)</text>
+    <rect x="720" y="444" width="240" height="96" rx="8" fill="#8a8a8a"/>
+    <text x="840" y="474" font-size="16" font-weight="700">RPC node</text>
+    <text x="840" y="494" font-size="12" fill="#eeeeee">[External system: Alchemy]</text>
+    <text x="840" y="520" font-size="13">Serves free reads of chain data</text>
   </g>
 
-  <text x="600" y="728" font-size="12" text-anchor="middle" fill="#b9c8da">Events: ParticipantRegistered · BatchRegistered · BatchApproved · BatchTransferred · UnitDispensed · BatchRecalled</text>
-
-  <!-- ============ Row 5: design notes ============ -->
-  <rect x="36" y="784" width="558" height="104" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
-  <text x="52" y="808" font-size="14" font-weight="700" fill="#1b3a5c">Serials and QR codes</text>
-  <g font-size="12.5" fill="#334155">
-    <text x="52" y="830">1. The manufacturer's browser makes a random 128-bit serial for each pack.</text>
-    <text x="52" y="850">2. Only keccak256(serial) goes on-chain, so serials can't be read back.</text>
-    <text x="52" y="870">3. The QR opens /verify?s=&lt;serial&gt;. Selling needs the raw serial, once.</text>
+  <!-- ========== Relationships ========== -->
+  <g stroke="#555" stroke-width="1.6" fill="none" marker-end="url(#arrow)">
+    <line x1="300" y1="212" x2="420" y2="270"/>
+    <line x1="700" y1="212" x2="580" y2="270"/>
+    <line x1="370" y1="372" x2="230" y2="442"/>
+    <line x1="630" y1="372" x2="770" y2="442"/>
+    <line x1="170" y1="540" x2="350" y2="630"/>
+    <line x1="830" y1="540" x2="650" y2="630"/>
   </g>
 
-  <rect x="606" y="784" width="558" height="104" rx="10" fill="#f5f0fb" stroke="#6b46a3"/>
-  <text x="622" y="808" font-size="14" font-weight="700" fill="#6b46a3">Build, test and security</text>
-  <g font-size="12.5" fill="#334155">
-    <text x="622" y="830">Foundry: forge (build, test, deploy), cast and anvil</text>
-    <text x="622" y="850">32 tests (unit, attack, fuzz, invariant) · 100% coverage</text>
-    <text x="622" y="870">Slither: no medium/high · GitHub Actions CI · source verified on Etherscan</text>
+  <g font-size="13" fill="#374151">
+    <text x="284" y="238" text-anchor="end">Runs the supply chain</text>
+    <text x="284" y="254" text-anchor="end" font-size="11.5" fill="#6b7280">[HTTPS]</text>
+
+    <text x="716" y="238">Scans a QR, checks a pack</text>
+    <text x="716" y="254" font-size="11.5" fill="#6b7280">[HTTPS]</text>
+
+    <text x="262" y="394" text-anchor="end">Asks for signatures</text>
+    <text x="262" y="410" text-anchor="end" font-size="11.5" fill="#6b7280">[wagmi, viem]</text>
+
+    <text x="738" y="394">Reads state and events</text>
+    <text x="738" y="410" font-size="11.5" fill="#6b7280">[JSON-RPC]</text>
+
+    <text x="250" y="604" text-anchor="end">Sends signed transactions</text>
+    <text x="250" y="620" text-anchor="end" font-size="11.5" fill="#6b7280">[JSON-RPC]</text>
+
+    <text x="750" y="604">eth_call, eth_getLogs</text>
+    <text x="750" y="620" font-size="11.5" fill="#6b7280">[JSON-RPC]</text>
+  </g>
+
+  <!-- ========== Legend ========== -->
+  <line x1="40" y1="798" x2="960" y2="798" stroke="#e5e7eb"/>
+  <g font-size="12.5" fill="#374151">
+    <text x="40" y="830" font-weight="700">Legend</text>
+    <rect x="104" y="816" width="22" height="18" rx="6" fill="#08427b"/>
+    <text x="134" y="830">Person</text>
+    <rect x="204" y="816" width="22" height="18" rx="3" fill="#1168bd"/>
+    <text x="234" y="830">Container (we build it)</text>
+    <rect x="394" y="816" width="22" height="18" rx="3" fill="#8a8a8a"/>
+    <text x="424" y="830">External system</text>
+    <rect x="544" y="816" width="22" height="18" rx="3" fill="none" stroke="#6b7280" stroke-dasharray="4 3"/>
+    <text x="574" y="830">System boundary</text>
+    <line x1="694" y1="825" x2="730" y2="825" stroke="#555" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <text x="740" y="830">Relationship [technology]</text>
   </g>
 </svg>

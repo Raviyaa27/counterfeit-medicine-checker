@@ -28,7 +28,7 @@ The contract address, Etherscan link and live site will be added here after depl
 
 ## How it works
 
-![Architecture: users, the Next.js web app, MetaMask and the RPC node, and the MedicineRegistry contract on Ethereum Sepolia](docs/architecture.svg)
+![Container diagram: staff and patients use the Next.js web app, which writes through MetaMask and reads through an RPC node from the MedicineRegistry contract on Ethereum Sepolia](docs/architecture.svg)
 
 A batch moves from the manufacturer, through NMRA approval and the distributor, to the pharmacy,
 which sells each pack. The patient scans the pack's QR code to check it on `/verify`.
